@@ -40,10 +40,7 @@ local_up() {
 
     k3d cluster create ${APPLICATION}-k3d \
       -v `pwd`/registries.yaml:/etc/rancher/k3s/registries.yaml \
-      --k3s-server-arg "--disable=metrics-server" \
-      --k3s-server-arg "--disable=traefik" \
-      -p 80:80@loadbalancer \
-      -p 443:443@loadbalancer \
+      --k3s-arg "--disable=traefik" \
       --agents 3 \
       --servers 1
 
