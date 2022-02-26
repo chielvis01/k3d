@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 set -e
 
 export APPLICATION="devops"
@@ -56,7 +56,7 @@ local_up() {
 }
 
 argocd () {
-    ARGOCD_PATH=/Users/namsoon/vivsoft/viv-k8s-bootstrap-local/vendors/argocd
+    ARGOCD_PATH=/Users/user/k3d/vendors/argocd
     helm dependency update "${ARGOCD_PATH}" --skip-refresh
     helm upgrade argocd "${ARGOCD_PATH}" -i --create-namespace -f "cluster/argocd/values.yaml" -f "cluster/argocd/dev-values.yaml" -n argocd --wait --timeout 10m
     kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2
